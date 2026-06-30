@@ -1,0 +1,9 @@
+[
+  {
+    "name":"Administrator",
+    "email": "admin@mail.com",
+    "password":"password123",
+    "gender": "male",
+    "role":"admin"
+  }
+]

@@ -1,0 +1,10 @@
+export const SEQUELIZE = 'SEQUELIZE';
+export const DEVELOPMENT = 'development';
+export const TEST = 'test';
+export const PRODUCTION = 'production';
+export const USER_REPOSITORY = 'USER_REPOSITORY';
+export const TICKET_REPOSITORY = 'TICKET_REPOSITORY';
+export const EXHIBITION_REPOSITORY = 'EXHIBITION_REPOSITORY';
+export const ARTWORK_REPOSITORY = 'ARTWORK_REPOSITORY';
+export const RESERVATION_REPOSITORY = 'RESERVATION_REPOSITORY';
+export const MAX_ACTIVE_RESERVATIONS = 5;

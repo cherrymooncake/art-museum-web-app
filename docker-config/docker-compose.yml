@@ -1,0 +1,50 @@
+services:
+  frontend:
+    build:
+      context: "frontend/"
+      dockerfile: "Dockerfile"
+      args:
+        - NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/artmuseum
+    container_name: frontend
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/artmuseum
+    ports:
+      - 80:3000
+      - 443:443
+    restart: unless-stopped
+  backend:
+    build:
+      context: "backend/"
+      dockerfile: "Dockerfile"
+    container_name: backend
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=nascia_2004
+      - DB_DIALECT=postgres
+      - DB_NAME_TEST=artmuseumdb
+      - DB_NAME_DEVELOPMENT=artmuseumdb
+      - DB_NAME_PRODUCTION=artmuseumdb
+      - JWTKEY=random_secret_key
+      - TOKEN_EXPIRATION=48h
+      - BEARER=Bearer
+    ports:
+      - 4000:4000
+    restart: unless-stopped
+  db:
+    image: postgres
+    restart: unless-stopped
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_PASSWORD: nascia_2004
+      POSTGRES_DB: artmuseumdb
+    ports:
+      - 6666:5432
